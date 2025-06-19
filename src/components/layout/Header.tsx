@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -40,22 +41,29 @@ export default function Header() {
   
   const NavLinkItem = ({ href, label, icon: Icon, isSheetClose = false }: { href: string; label: string; icon: React.ElementType; isSheetClose?: boolean }) => {
     const Comp = isSheetClose ? SheetClose : 'div';
-    return (
-      <Comp asChild={isSheetClose}>
-        <Link
-          href={href}
-          className={cn(
-            "flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors",
-            pathname === href
-              ? "bg-primary/10 text-primary"
-              : "text-muted-foreground hover:bg-primary/5 hover:text-primary"
-          )}
-        >
-          <Icon className="h-5 w-5" />
-          <span>{label}</span>
-        </Link>
-      </Comp>
+    
+    const linkElement = (
+      <Link
+        href={href}
+        className={cn(
+          "flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors",
+          pathname === href
+            ? "bg-primary/10 text-primary"
+            : "text-muted-foreground hover:bg-primary/5 hover:text-primary"
+        )}
+      >
+        <Icon className="h-5 w-5" />
+        <span>{label}</span>
+      </Link>
     );
+
+    if (isSheetClose) {
+      // If Comp is SheetClose, pass asChild to it.
+      return <Comp asChild>{linkElement}</Comp>;
+    } else {
+      // If Comp is 'div', it does not take asChild. Render the linkElement within the div.
+      return <Comp>{linkElement}</Comp>;
+    }
   };
 
 
