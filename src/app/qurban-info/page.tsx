@@ -2,7 +2,7 @@
 
 import MainAppLayout from '@/components/layout/MainAppLayout';
 import QurbanInfoCard from '@/components/qurban-info/QurbanInfoCard';
-import { BookOpen, FileText, ShieldQuestion, Users } from 'lucide-react';
+import { BookOpen, FileText, ShieldQuestion, Users, Info } from 'lucide-react';
 
 // Mock data for Qurban information articles
 const qurbanArticles = [
